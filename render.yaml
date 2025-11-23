@@ -3,7 +3,7 @@ services:
     name: homefinder-ai-backend
     env: node
     rootDir: .
-    buildCommand: npm install --prefix server && npm run build --prefix server
+    buildCommand: npm install --prefix server --include=dev && npm run build --prefix server
     startCommand: npm start --prefix server
     envVars:
       - key: NODE_ENV
