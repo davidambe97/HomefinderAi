@@ -53,6 +53,25 @@ app.use((req, res, next) => {
   next();
 });
 
+// Root endpoint
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'HomeFinder AI SaaS Backend API',
+    version: '1.0.0',
+    status: 'running',
+    endpoints: {
+      health: '/health',
+      register: 'POST /api/users/register',
+      login: 'POST /api/users/login',
+      search: 'POST /api/search',
+      clients: 'GET/POST /api/clients',
+      dashboard: 'GET /api/dashboard',
+      alerts: 'GET /api/alerts',
+    },
+    timestamp: new Date().toISOString(),
+  });
+});
+
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.json({ 
