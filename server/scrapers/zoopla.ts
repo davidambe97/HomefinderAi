@@ -61,6 +61,9 @@ function buildSearchUrl(query: SearchQuery): string {
   // Sorting (newest first)
   params.append('sort', 'newest_listings');
   
+  // Add premium=true to avoid HTTP 500 on protected domains
+  params.append('premium', 'true');
+  
   return `${baseUrl}?${params.toString()}`;
 }
 
