@@ -214,9 +214,30 @@ app.get('/api/dashboard', async (req, res) => {
 app.post('/api/search', async (req, res) => {
   try {
     const query = req.body;
-    console.log('[API] Search request:', query);
+    console.log('[API] Search request received:', JSON.stringify(query, null, 2));
+    
+    // Validate query
+    if (!query || !query.location) {
+      return res.status(400).json({ 
+        error: 'Location is required',
+        success: false,
+        listings: [],
+        totalFound: 0,
+        sources: []
+      });
+    }
     
     const result = await searchProperties(query);
+    
+    console.log('[API] Search completed:', {
+      totalFound: result.totalFound,
+      sources: result.results.map(r => ({
+        source: r.source,
+        success: r.success,
+        count: r.listings.length,
+        hasError: !!r.error
+      }))
+    });
     
     res.status(200).json({
       success: true,
