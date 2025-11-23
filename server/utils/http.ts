@@ -132,6 +132,6 @@ export async function fetchJson<T = any>(url: string, options?: FetchOptions): P
       ...options?.headers,
     },
   });
-  return response.json();
+  return response.json() as Promise<T>;
 }
 
