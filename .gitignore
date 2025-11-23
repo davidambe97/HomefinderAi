@@ -42,3 +42,4 @@ dist-ssr
 # Parent directory files (should not be tracked)
 ../*
 !../.gitignore
+.vercel

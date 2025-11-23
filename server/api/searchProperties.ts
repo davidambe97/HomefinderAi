@@ -78,18 +78,33 @@ export async function searchProperties(query: SearchQuery): Promise<{
   results: ScraperResult[];
   totalFound: number;
 }> {
+  console.log('[SearchProperties] Starting search across all scrapers...');
+  console.log('[SearchProperties] Query:', JSON.stringify(query, null, 2));
+  
   // Run all scrapers in parallel using Promise.allSettled
   const scraperPromises = SCRAPERS.map(async (config): Promise<ScraperResult> => {
+    const startTime = Date.now();
+    console.log(`[SearchProperties] Starting ${config.name} scraper...`);
+    
     try {
       const listings = await config.scraper(query);
+      const duration = Date.now() - startTime;
+      
+      if (listings.length > 0) {
+        console.log(`[SearchProperties] ✅ ${config.name}: Found ${listings.length} properties in ${duration}ms`);
+      } else {
+        console.log(`[SearchProperties] ⚠️  ${config.name}: No properties found (${duration}ms)`);
+      }
+      
       return {
         success: true,
         listings,
         source: config.name,
       };
     } catch (error) {
+      const duration = Date.now() - startTime;
       const errorMessage = error instanceof Error ? error.message : String(error);
-      console.error(`[${config.name}] Scraper error:`, errorMessage);
+      console.error(`[SearchProperties] ❌ ${config.name} failed after ${duration}ms:`, errorMessage);
       return {
         success: false,
         listings: [],
@@ -125,6 +140,18 @@ export async function searchProperties(query: SearchQuery): Promise<{
 
   // Deduplicate listings
   const uniqueListings = deduplicateListings(allListings);
+
+  // Summary logging
+  const successfulScrapers = scraperResults.filter(r => r.success && r.listings.length > 0);
+  const failedScrapers = scraperResults.filter(r => !r.success);
+  const emptyScrapers = scraperResults.filter(r => r.success && r.listings.length === 0);
+  
+  console.log('[SearchProperties] ===== Search Summary =====');
+  console.log(`[SearchProperties] Total unique listings: ${uniqueListings.length}`);
+  console.log(`[SearchProperties] Successful scrapers with results: ${successfulScrapers.length} (${successfulScrapers.map(s => s.source).join(', ')})`);
+  console.log(`[SearchProperties] Failed scrapers: ${failedScrapers.length}${failedScrapers.length > 0 ? ` (${failedScrapers.map(s => s.source).join(', ')})` : ''}`);
+  console.log(`[SearchProperties] Empty results: ${emptyScrapers.length}${emptyScrapers.length > 0 ? ` (${emptyScrapers.map(s => s.source).join(', ')})` : ''}`);
+  console.log('[SearchProperties] =========================');
 
   return {
     listings: uniqueListings,

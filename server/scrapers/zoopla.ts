@@ -288,7 +288,7 @@ export async function scrape(query: SearchQuery): Promise<PropertyListing[]> {
     // Parse listings from HTML
     const listings = parseListings(html, SITE_URLS.zoopla);
     
-    console.log(`[Zoopla] Found ${listings.length} properties`);
+    console.log(`[Zoopla] ✅ Successfully found ${listings.length} properties`);
     
     // Log sample of results for debugging
     if (listings.length > 0) {
@@ -297,7 +297,10 @@ export async function scrape(query: SearchQuery): Promise<PropertyListing[]> {
         title: listings[0].title,
         price: listings[0].price,
         location: listings[0].location,
+        source: listings[0].source,
       });
+    } else {
+      console.warn('[Zoopla] ⚠️  No properties found - HTML may need different parsing');
     }
     
     return listings;

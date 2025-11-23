@@ -41,7 +41,15 @@ PORT=10000
 
 These are optional but recommended for better scraping performance:
 
-### 5. `SCRAPER_TIMEOUT`
+### 5. `SCRAPER_API_KEY` ⚠️ REQUIRED
+```
+SCRAPER_API_KEY=8726dd52be7d59a121ebe69c52b5d050
+```
+**Purpose:** ScraperAPI key for bypassing website blocks  
+**Required:** Yes  
+**Note:** This is your ScraperAPI key - keep it secure
+
+### 6. `SCRAPER_TIMEOUT`
 ```
 SCRAPER_TIMEOUT=30000
 ```
@@ -49,7 +57,7 @@ SCRAPER_TIMEOUT=30000
 **Default:** 30000 (30 seconds)  
 **Recommended:** 30000-60000 for production
 
-### 6. `SCRAPER_RETRIES`
+### 7. `SCRAPER_RETRIES`
 ```
 SCRAPER_RETRIES=3
 ```
@@ -68,6 +76,7 @@ Copy and paste these into Render's Environment Variables section:
 NODE_ENV=production
 JWT_SECRET=ZnPwnxb7i4NJxpKI5c1vaWcerOX1CV+XI7N/b07YfklpQs1vyXMsyHa3clhIzBXQ2t3UYDc34Id/G0my
 FRONTEND_URL=https://your-app-name.vercel.app
+SCRAPER_API_KEY=8726dd52be7d59a121ebe69c52b5d050
 
 # Optional (but recommended)
 SCRAPER_TIMEOUT=30000
