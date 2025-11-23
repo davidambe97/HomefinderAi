@@ -1,0 +1,38 @@
+# Vercel ignore file
+# Files and directories to exclude from deployment
+
+# Backend server (deploy separately)
+server/
+
+# Development files
+.env.local
+.env.development
+*.log
+
+# Test files
+tests/
+*.test.ts
+*.test.tsx
+
+# Documentation (optional - remove if you want to include)
+DEPLOYMENT.md
+DEPLOYMENT_CHECKLIST.md
+DEPLOYMENT_SUMMARY.md
+QUICK_START.md
+TESTING.md
+
+# Scripts
+scripts/
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
