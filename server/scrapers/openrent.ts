@@ -3,7 +3,7 @@
  */
 
 import { PropertyListing, SearchQuery } from '../types.js';
-import { fetchHtml } from '../utils/http.js';
+import { fetchViaScraperApi } from '../utils/scraperApi.js';
 import { SITE_URLS } from '../config.js';
 
 /**
@@ -290,11 +290,8 @@ export async function scrape(query: SearchQuery): Promise<PropertyListing[]> {
     const searchUrl = buildSearchUrl(query);
     console.log('[OpenRent] Fetching:', searchUrl);
     
-    // Fetch HTML with retry logic
-    const html = await fetchHtml(searchUrl, {
-      timeout: 30000,
-      retries: 3,
-    });
+    // Fetch HTML via ScraperAPI
+    const html = await fetchViaScraperApi(searchUrl);
     
     console.log(`[OpenRent] Fetched ${html.length} bytes of HTML`);
     
