@@ -6,8 +6,8 @@ import { readFile, writeFile, mkdir } from 'fs/promises';
 import { existsSync } from 'fs';
 import { join } from 'path';
 import { randomBytes } from 'crypto';
-import { SearchQuery } from '../types';
-import { PublicUser, authMiddleware } from './users';
+import { SearchQuery } from '../types.js';
+import { PublicUser, authMiddleware } from './users.js';
 
 /**
  * TypeScript types for client management

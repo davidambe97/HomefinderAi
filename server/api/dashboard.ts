@@ -3,10 +3,10 @@
  * Fetches property listings for all clients associated with an agent
  */
 
-import { PropertyListing } from '../types';
-import { listClients } from './clients';
-import { searchProperties } from './searchProperties';
-import { PublicUser, authMiddleware } from './users';
+import { PropertyListing } from '../types.js';
+import { listClients } from './clients.js';
+import { searchProperties } from './searchProperties.js';
+import { PublicUser, authMiddleware } from './users.js';
 
 /**
  * TypeScript types for dashboard results

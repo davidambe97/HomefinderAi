@@ -2,9 +2,9 @@
  * SpareRoom scraper implementation
  */
 
-import { PropertyListing, SearchQuery } from '../types';
-import { fetchHtml } from '../utils/http';
-import { SITE_URLS } from '../config';
+import { PropertyListing, SearchQuery } from '../types.js';
+import { fetchHtml } from '../utils/http.js';
+import { SITE_URLS } from '../config.js';
 
 /**
  * Map property type from query to SpareRoom format

@@ -2,11 +2,11 @@
  * Unified scraper loader that runs all scrapers in parallel and merges results
  */
 
-import { PropertyListing, SearchQuery, ScraperResult } from '../types';
-import * as rightmoveScraper from '../scrapers/rightmove';
-import * as zooplaScraper from '../scrapers/zoopla';
-import * as openrentScraper from '../scrapers/openrent';
-import * as spareRoomScraper from '../scrapers/spareRoom';
+import { PropertyListing, SearchQuery, ScraperResult } from '../types.js';
+import * as rightmoveScraper from '../scrapers/rightmove.js';
+import * as zooplaScraper from '../scrapers/zoopla.js';
+import * as openrentScraper from '../scrapers/openrent.js';
+import * as spareRoomScraper from '../scrapers/spareRoom.js';
 
 interface ScraperConfig {
   name: string;

@@ -3,7 +3,7 @@
  * Detects new property listings and generates alerts for clients
  */
 
-import { PropertyListing } from '../types';
+import { PropertyListing } from '../types.js';
 
 /**
  * TypeScript types for alerts
