@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: homefinder-ai-backend
+    env: node
+    buildCommand: cd server && npm install && npm run build
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: SCRAPER_TIMEOUT
+        value: 30000
+      - key: SCRAPER_RETRIES
+        value: 3
+
