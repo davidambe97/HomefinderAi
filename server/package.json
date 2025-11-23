@@ -9,7 +9,8 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "start:dev": "tsx index.ts",
-    "scrape": "tsx scripts/playwright-scraper.ts"
+    "scrape": "tsx scripts/playwright-scraper.ts",
+    "scrape:js": "node scripts/scrapeListings.js"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
